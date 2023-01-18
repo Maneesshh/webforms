@@ -10,12 +10,12 @@ namespace Event
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
-            {
-                // Clear any previous data in the form controls
-                EventName.Text = "";
-                EventDate.SelectedDate = DateTime.Today;
-            }
+            //if (!IsPostBack)
+            //{
+            //    // Clear any previous data in the form controls
+            //    EventName.Text = "";
+            //    EventDate.Text = DateTime.Today;
+            //}
             string str = "Server=localhost;Port=5432;Database=EventWebForm;UserId=postgres;Password=root";
             conn = new NpgsqlConnection(str);
             conn.Open();
@@ -27,7 +27,7 @@ namespace Event
         protected void AddEvent_Click(object sender, EventArgs e)
         {
             string eventName = EventName.Text;
-            DateTime eventDate = EventDate.SelectedDate;
+            string eventDate = EventDate.Text;
 
             // Insert the new event into the database
             string sql = "INSERT INTO Event (eventname, eventdate) VALUES (@EventName, @EventDate)";
@@ -35,8 +35,8 @@ namespace Event
             cmd.Parameters.AddWithValue("@EventName", eventName);
             cmd.Parameters.AddWithValue("@EventDate", eventDate);
             cmd.ExecuteNonQuery();
-        // Show a confirmation message
-        ConfirmationLabel.Text = "Event added successfully!";
+            // Show a confirmation message
+            ConfirmationLabel.Text = "Event added successfully!";
         }
-}
+    }
 }

@@ -55,6 +55,5 @@ namespace Event
             ConfirmationLabel.Text = "Event updated successfully!";
         }
 
-        // Show a confirmation message
     }
 }
